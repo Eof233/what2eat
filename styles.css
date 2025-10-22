@@ -1,0 +1,264 @@
+/* 全局样式 */
+:root {
+    --primary-color: #e63946;
+    --secondary-color: #f1faee;
+    --accent-color: #a8dadc;
+    --dark-color: #457b9d;
+    --light-color: #f8f9fa;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-color);
+    color: #333;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* 头部样式 */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 2rem;
+}
+
+.subtitle {
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+/* 转盘容器样式 */
+.wheel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid var(--primary-color);
+    z-index: 5;
+}
+
+.wheel-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#wheelCanvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform-origin: center center;
+    transition: none;
+}
+
+.spin-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.spin-button:hover {
+    background-color: #c92332;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.spin-button:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.spin-button.spinning {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.result-container {
+    min-height: 40px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* 食物选择器样式 */
+.food-selector {
+    margin: 30px 15px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.list-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #777;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.list-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.food-item {
+    background-color: var(--secondary-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.food-item i {
+    color: var(--primary-color);
+}
+
+/* 模态框样式 */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.selected-food {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(230, 57, 70, 0.05);
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+}
+
+/* 响应式调整 */
+@media (max-width: 576px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .wheel-wrapper {
+        width: 300px;
+        height: 300px;
+    }
+
+    #wheelCanvas {
+        width: 300px;
+        height: 300px;
+    }
+
+    .spin-button {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinning {
+    animation: spin 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c92332;
+}

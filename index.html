@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>今天吃什么 - 四川美食转盘</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="text-center py-3">
+            <h1 class="main-title"><i class="bi bi-pin-angle-fill"></i> 今天吃什么</h1>
+            <p class="subtitle">四川美食转盘选择器</p>
+        </header>
+
+        <main>
+            <!-- 转盘容器 -->
+            <section class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="wheel-wrapper">
+                    <canvas id="wheelCanvas" width="350" height="350"></canvas>
+                    <div class="spin-button" id="spinButton">
+                        <i class="bi bi-play-fill"></i>
+                    </div>
+                </div>
+                <div id="resultContainer" class="result-container"></div>
+            </section>
+
+            <!-- 食物选择器 -->
+            <section class="food-selector">
+                <div class="selector-header">
+                    <h3>选择食物列表</h3>
+                    <button class="btn btn-outline-primary btn-sm" id="customListBtn">
+                        <i class="bi bi-plus-circle"></i> 自定义列表
+                    </button>
+                </div>
+                <div class="list-tabs" id="listTabs">
+                    <!-- 动态生成的标签页 -->
+                </div>
+                <div class="list-content" id="listContent">
+                    <!-- 动态生成的食物列表 -->
+                </div>
+            </section>
+        </main>
+
+        <!-- 自定义食物模态框 -->
+        <div class="modal fade" id="customFoodModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">自定义食物列表</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="listName" class="form-label">列表名称</label>
+                            <input type="text" class="form-control" id="listName" placeholder="给您的列表起个名字">
+                        </div>
+                        <div class="mb-3">
+                            <label for="foodItems" class="form-label">食物项目</label>
+                            <textarea class="form-control" id="foodItems" rows="6" placeholder="每行输入一个食物名称，例如：&#10;火锅&#10;麻婆豆腐&#10;回锅肉"></textarea>
+                            <small class="form-text text-muted">每行输入一个食物名称</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="saveCustomList">保存列表</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果模态框 -->
+        <div class="modal fade" id="resultModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">今天吃什么呢？</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="selected-food" id="selectedFood"></div>
+                        <button class="btn btn-success mt-3" id="decideBtn">
+                            <i class="bi bi-check-circle"></i> 就吃这个了！
+                        </button>
+                        <button class="btn btn-outline-secondary mt-3 ms-2" id="spinAgainBtn">
+                            <i class="bi bi-arrow-clockwise"></i> 再转一次
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center py-3 mt-5">
+            <p class="text-muted">© 今天吃什么？- 四川美食转盘</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
