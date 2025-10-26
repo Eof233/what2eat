@@ -214,7 +214,8 @@ function spin() {
 
     // 计算需要旋转的角度
     const anglePerSection = 360 / currentFoodList.length;
-    const selectedAngle = selectedFoodIndex * anglePerSection;
+    // 指针指向扇形中心，而不是扇形边缘
+    const selectedAngle = selectedFoodIndex * anglePerSection + anglePerSection / 2;
     const randomAngle = 360 * 5 + (360 - selectedAngle); // 转5圈再加对齐角度
 
     // 应用旋转动画
